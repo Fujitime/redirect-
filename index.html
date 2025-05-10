@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Mirror</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
+      color: #000;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .container {
+      text-align: center;
+      max-width: 800px;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    h1 {
+      font-weight: 800;
+      font-size: clamp(32px, 8vw, 64px);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    
+    .subtext {
+      font-size: clamp(18px, 4vw, 24px);
+      font-weight: 400;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+    
+    .shadow-pulse {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(0,0,0,0.01) 0%, rgba(255,255,255,0) 70%);
+      opacity: 0;
+      animation: shadowPulse 8s infinite;
+      pointer-events: none;
+    }
+    
+    @keyframes shadowPulse {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      50% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shadow-pulse"></div>
+  <div class="container">
+    <h1>Hey, are you actually here right now?</h1>
+    <p class="subtext" id="subtext">Or just escape reality?</p>
+  </div>
+
+  <script>
+    // Fade in subtext after 2 seconds
+    setTimeout(() => {
+      document.getElementById('subtext').style.opacity = '1';
+    }, 2000);
+    
+    // Auto reload every 5 seconds
+    setTimeout(() => {
+      location.reload();
+    }, 5000);
+  </script>
+</body>
+</html>
